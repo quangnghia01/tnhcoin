@@ -1,3 +1,4 @@
+//add hash function library:   npm install --save crypto-js
 const SHA256 = require('crypto-js/sha256');
 
 class Block{
@@ -6,7 +7,7 @@ class Block{
         this.timestamp = timestamp;
         this.data = data;
         this.previousHash = previousHash;
-        this.hash = '';
+        this.hash = this.calculateHash();
     }
 
     calculateHash(){
@@ -34,6 +35,7 @@ class Blockchain{
         this.chain.push(newBlock);
     }
 
+    //Check block hash
     isChainValid(){
         for(let i=1; i<this.chain.length; i++){
             const currentBlock = this.chain[i];
@@ -60,7 +62,8 @@ tnhCoin.addBlock(new Block(2, "29/09/2021", {amount: 10}));
 console.log(JSON.stringify(tnhCoin, null, 3));
 
 //check a blockchain is valid when change it
-console.log('Is Blockchain valid? ' + tnhCoin.isChainValid());
+console.log('Before, Is Blockchain valid? ' + tnhCoin.isChainValid());
+
 tnhCoin.chain[1].data = {amount:3};
 tnhCoin.chain[1].hash = tnhCoin.chain[1].calculateHash();
-console.log('Is Blockchain valid? ' + tnhCoin.isChainValid());
+console.log('After, Is Blockchain valid? ' + tnhCoin.isChainValid());

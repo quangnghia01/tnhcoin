@@ -1,3 +1,4 @@
+//install library elliptic: npm install elliptic
 const EC = require('elliptic').ec;
 const ec = new EC('secp256k1');
 
@@ -6,6 +7,7 @@ const publicKey = key.getPublic('hex');
 const privateKey = key.getPrivate('hex');
 
 console.log(); //print a new line
-console.log('Public key: ', publicKey);
-console.log();
 console.log('Private key: ', privateKey);
+console.log();
+console.log('Public key: ', publicKey);
+
